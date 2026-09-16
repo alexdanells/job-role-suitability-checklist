@@ -3,7 +3,7 @@
 ## Project purpose
 A form/checklist completed by employers on behalf of apprentices at the point of UK apprenticeship enrolment. The employer confirms the level of exposure and frequency of exposure to criteria required by the apprenticeship standard, determining whether the role can satisfy the necessary learning outcomes and whether the apprenticeship should proceed.
 
-This is a Boom Training (by Turing College) tool — deployed as a static GitHub Pages site, no backend.
+This is a Tess Group tool — deployed as a static GitHub Pages site, no backend.
 
 ---
 
@@ -26,15 +26,15 @@ Alex opens `index.html` directly in a browser (file:// or the GitHub Pages URL).
 ---
 
 ## Repository
-- **GitHub:** `alexdanells-boomtraining/job-role-suitability-checklist`
-- **Live site:** `https://alexdanells-boomtraining.github.io/job-role-suitability-checklist/`
+- **GitHub:** `alexdanells/job-role-suitability-checklist`
+- **Live site:** `https://alexdanells.github.io/job-role-suitability-checklist/`
 - **GitHub Pages:** enabled from `main` branch root
 - Always commit and push after changes so the live site stays current
 
 ---
 
 ## User profile
-Alex (alex.danells@boom-training.com) has built similar HTML/CSS/JS/LocalStorage apps on GitHub Pages before. Treat Alex as a non-developer — explain steps clearly, flag anything requiring manual browser or GitHub action, and avoid jargon without explanation. Alex refreshes `index.html` manually after each change is confirmed done.
+Alex (alex.danells@thetessgroup.com) has built similar HTML/CSS/JS/LocalStorage apps on GitHub Pages before. Treat Alex as a non-developer — explain steps clearly, flag anything requiring manual browser or GitHub action, and avoid jargon without explanation. Alex refreshes `index.html` manually after each change is confirmed done.
 
 ---
 

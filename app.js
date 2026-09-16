@@ -763,8 +763,8 @@ function renderResults(state, config, standardId) {
 
   const cfgMap = {
     suitable:          { label:'Suitable',         cls:'verdict-suitable',         msg:'Based on the information provided, this role appears to provide sufficient exposure across all required skill areas. The apprenticeship is recommended to proceed.' },
-    'review-required': { label:'Review Required',  cls:'verdict-review',           msg:'One or more skill areas show limited or infrequent exposure. Please review the highlighted sections. A conversation with your Boom Training advisor is recommended before confirming enrolment.' },
-    'not-recommended': { label:'Not Recommended',  cls:'verdict-not-recommended',  msg:'One or more skill areas show very limited and infrequent exposure. In its current form, this role may not provide the breadth of experience required by this standard. Please speak with your Boom Training advisor to explore options.' },
+    'review-required': { label:'Review Required',  cls:'verdict-review',           msg:'One or more skill areas show limited or infrequent exposure. Please review the highlighted sections. A conversation with your Tess Group advisor is recommended before confirming enrolment.' },
+    'not-recommended': { label:'Not Recommended',  cls:'verdict-not-recommended',  msg:'One or more skill areas show very limited and infrequent exposure. In its current form, this role may not provide the breadth of experience required by this standard. Please speak with your Tess Group advisor to explore options.' },
     incomplete:        { label:'Incomplete',        cls:'verdict-incomplete',       msg:'Not all sections have been completed. Please complete every section to receive a full suitability assessment.' },
   };
   const vd = cfgMap[verdict];
@@ -803,7 +803,7 @@ function renderResults(state, config, standardId) {
       <div class="results-tools"><strong>Tools &amp; Technologies:</strong> ${toolsStr}</div>
       ${state.tools_access  ? `<div class="results-tools"><strong>System access notes:</strong> ${state.tools_access}</div>`  : ''}
       ${state.additional_info ? `<div class="results-tools"><strong>Additional information:</strong> ${state.additional_info}</div>` : ''}
-      <p class="results-footer">This checklist is for guidance and internal assessment only. Final enrolment decisions rest with Boom Training in consultation with the employer and apprentice.</p>
+      <p class="results-footer">This checklist is for guidance and internal assessment only. Final enrolment decisions rest with The Tess Group in consultation with the employer and apprentice.</p>
     </div>
   `;
 }

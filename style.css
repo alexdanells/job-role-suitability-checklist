@@ -5,10 +5,10 @@
 }
 
 :root {
-  --navy:   #1a1b2e;
-  --navy2:  #252640;
-  --green:  #00d47a;
-  --green-dim: #00aa62;
+  --navy:   #1a1f6d;
+  --navy2:  #3c4082;
+  --green:  #72c492;
+  --green-dim: #007a30;
   --bg:     #f5f7fb;
   --white:  #ffffff;
   --text:   #1a1b2e;
@@ -43,11 +43,19 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
-.logo {
-  height: 40px;
-  width: auto;
-  filter: brightness(0) invert(1);
+.logo-wrap {
+  background: var(--white);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .site-title {
