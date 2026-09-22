@@ -1,12 +1,12 @@
 // ── Navigation ────────────────────────────────────────────
 
 const STANDARDS = {
+  'AI & Automation': [
+    { id: 'l4-applied-ai',            label: 'Level 4 AI & Automation Practitioner' },
+  ],
   'Data': [
     { id: 'l4-data-analyst',          label: 'Level 4 Data Analyst' },
     { id: 'l3-data-technician',       label: 'Level 3 Data Technician' },
-  ],
-  'AI & Automation': [
-    { id: 'l4-applied-ai',            label: 'Level 4 AI & Automation Practitioner' },
   ],
   'Digital Marketing': [
     { id: 'l3-multichannel-marketer', label: 'Level 3 Multi-channel Marketer' },
@@ -19,6 +19,11 @@ const STANDARDS = {
     { id: 'l4-prof-accounting',       label: 'Level 4 Professional Accounting Technician' },
   ],
 };
+
+// Categories kept in the data above (so their checklists still resolve
+// via findStandard/CHECKLISTS) but hidden from the nav for now.
+const HIDDEN_CATEGORIES = ['Digital Marketing', 'Cyber Security', 'Accountancy'];
+const NAV_CATEGORIES = Object.keys(STANDARDS).filter(c => !HIDDEN_CATEGORIES.includes(c));
 
 const STANDARD_META = {
   'l4-data-analyst':          { version: 'v1.1', code: 'ST0118', url: 'https://skillsengland.education.gov.uk/apprenticeship-standards/st0118-v1-1' },
@@ -310,7 +315,7 @@ let activeConfig = null;
 
 // ── Nav ───────────────────────────────────────────────────
 
-let activeCategory = Object.keys(STANDARDS)[0];
+let activeCategory = NAV_CATEGORIES[0];
 let activeId       = STANDARDS[activeCategory][0].id;
 
 function buildNav() { renderCategoryRow(); renderStandardRow(); }
@@ -318,7 +323,7 @@ function buildNav() { renderCategoryRow(); renderStandardRow(); }
 function renderCategoryRow() {
   const row = document.getElementById('nav-categories');
   row.innerHTML = '';
-  Object.keys(STANDARDS).forEach(group => {
+  NAV_CATEGORIES.forEach(group => {
     const btn = document.createElement('button');
     btn.className = 'nav-tab' + (group === activeCategory ? ' active' : '');
     btn.textContent = group;
