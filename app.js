@@ -1,12 +1,12 @@
 // ── Navigation ────────────────────────────────────────────
 
 const STANDARDS = {
+  'AI & Automation': [
+    { id: 'l4-applied-ai',            label: 'Level 4 AI & Automation Practitioner' },
+  ],
   'Data': [
     { id: 'l4-data-analyst',          label: 'Level 4 Data Analyst' },
     { id: 'l3-data-technician',       label: 'Level 3 Data Technician' },
-  ],
-  'AI & Automation': [
-    { id: 'l4-applied-ai',            label: 'Level 4 AI & Automation Practitioner' },
   ],
   'Digital Marketing': [
     { id: 'l3-multichannel-marketer', label: 'Level 3 Multi-channel Marketer' },
@@ -19,6 +19,11 @@ const STANDARDS = {
     { id: 'l4-prof-accounting',       label: 'Level 4 Professional Accounting Technician' },
   ],
 };
+
+// Categories kept in the data above (so their checklists still resolve
+// via findStandard/CHECKLISTS) but hidden from the nav for now.
+const HIDDEN_CATEGORIES = ['Digital Marketing', 'Cyber Security', 'Accountancy'];
+const NAV_CATEGORIES = Object.keys(STANDARDS).filter(c => !HIDDEN_CATEGORIES.includes(c));
 
 const STANDARD_META = {
   'l4-data-analyst':          { version: 'v1.1', code: 'ST0118', url: 'https://skillsengland.education.gov.uk/apprenticeship-standards/st0118-v1-1' },
@@ -33,14 +38,14 @@ const STANDARD_META = {
 // ── Level 4 Data Analyst ──────────────────────────────────
 
 const DA_SKILL_GROUPS = [
-  { id: 'security-compliance',   short: 'Data Security',      title: 'Data Security & Compliance',              skills: ['S1','S3'],        description: 'The apprentice will need to handle data securely and responsibly, following your organisation\'s policies and legal requirements such as GDPR. This includes using data systems with appropriate access controls, understanding which data can and cannot be shared, and correctly classifying different types of data.', example: 'e.g. logging into a database or CRM with role-based access, handling customer records in line with your data protection policy, labelling files as confidential or restricted.' },
-  { id: 'data-collection',       short: 'Data Collection',    title: 'Data Collection & Sourcing',               skills: ['S2','S8'],        description: 'The apprentice will need to gather data from multiple sources — such as internal databases, spreadsheets, or external platforms — and understand how to combine these datasets safely. This covers the full journey from identifying where data lives to preparing it for analysis.', example: 'e.g. pulling monthly sales data from a database, combining CRM exports with finance reports, downloading datasets from a third-party portal.' },
-  { id: 'data-quality',          short: 'Data Quality',       title: 'Data Cleaning & Quality',                  skills: ['S4','S6'],        description: 'The apprentice will need to work with real-world data that may contain errors, gaps, or inconsistencies — and know how to identify, fix, or escalate these issues. They\'ll also work across different data formats such as structured tables, spreadsheets, and unstructured text.', example: 'e.g. removing duplicate customer records, identifying a report with missing values and flagging it to a manager, working with both a database and a CSV export.' },
-  { id: 'analysis-statistics',   short: 'Analysis & Stats',   title: 'Analysis & Statistical Methods',           skills: ['S10','S13'],      description: 'The apprentice will need to apply analytical techniques to real data — from calculating trends and averages through to more advanced methods such as forecasting, pattern recognition, or time series analysis. Complexity can grow as the apprenticeship progresses.', example: 'e.g. producing a monthly performance trend report, identifying a seasonal pattern in sales data, running a basic regression, forecasting next quarter\'s demand.' },
-  { id: 'predictive-analytics',  short: 'Predictive Analysis',title: 'Predictive & Forward-Looking Analysis',    skills: ['S11'],            description: 'The apprentice will need some exposure to using data to make predictions or support future planning. This doesn\'t require complex machine learning — it could be forecasting models in Excel, trend lines in a BI tool, or scenario planning with data.', example: 'e.g. building a revenue forecast, modelling the impact of a pricing change, predicting stock levels based on historical demand.' },
-  { id: 'data-governance',       short: 'Data Governance',    title: 'Data Architecture & Governance',           skills: ['S9'],             description: 'The apprentice will need to understand how your organisation structures and governs its data — including where data is stored, who is responsible for it, and how it moves across systems. They don\'t need to design the architecture, but should work within it day-to-day.', example: 'e.g. knowing which system is the source of truth for customer data, understanding the difference between a data warehouse and operational databases, following a data governance or retention policy.' },
-  { id: 'reporting-visualisation',short: 'Reporting & Viz',   title: 'Reporting & Data Visualisation',           skills: ['S14'],            description: 'The apprentice will need to regularly turn data into visual outputs that communicate findings clearly to others — such as dashboards, charts, graphs, or written reports. This is a core part of the role and a significant element of the End Point Assessment.', example: 'e.g. building and maintaining a Power BI or Tableau dashboard, producing a weekly performance report in Excel, creating charts for a management presentation.' },
-  { id: 'stakeholder-comms',     short: 'Stakeholder Comms',  title: 'Stakeholder Engagement & Communication',   skills: ['S5','S7','S12'],  description: 'The apprentice will need to work with colleagues or clients to understand what they need from data, and present findings back in a clear and appropriate way — adapting their communication style for both technical and non-technical audiences.', example: 'e.g. meeting with a department head to agree what metrics to track, presenting a data summary to a senior leadership team, writing a plain-English summary of analysis findings.' },
+  { id: 'security-compliance',   short: 'Data Security',      title: 'Data Security & Compliance',              skills: ['S1','S3'],        description: 'The apprentice will need to handle data securely and responsibly, following your organisation\'s policies and legal requirements such as GDPR. This includes using data systems with appropriate access controls, understanding which data can and cannot be shared, and correctly classifying different types of data.', descriptionApprentice: 'You will need to handle data securely and responsibly, following your organisation\'s policies and legal requirements such as GDPR. This includes using data systems with appropriate access controls, understanding which data can and cannot be shared, and correctly classifying different types of data.', example: 'e.g. logging into a database or CRM with role-based access, handling customer records in line with your data protection policy, labelling files as confidential or restricted.' },
+  { id: 'data-collection',       short: 'Data Collection',    title: 'Data Collection & Sourcing',               skills: ['S2','S8'],        description: 'The apprentice will need to gather data from multiple sources — such as internal databases, spreadsheets, or external platforms — and understand how to combine these datasets safely. This covers the full journey from identifying where data lives to preparing it for analysis.', descriptionApprentice: 'You will need to gather data from multiple sources — such as internal databases, spreadsheets, or external platforms — and understand how to combine these datasets safely. This covers the full journey from identifying where data lives to preparing it for analysis.', example: 'e.g. pulling monthly sales data from a database, combining CRM exports with finance reports, downloading datasets from a third-party portal.' },
+  { id: 'data-quality',          short: 'Data Quality',       title: 'Data Cleaning & Quality',                  skills: ['S4','S6'],        description: 'The apprentice will need to work with real-world data that may contain errors, gaps, or inconsistencies — and know how to identify, fix, or escalate these issues. They\'ll also work across different data formats such as structured tables, spreadsheets, and unstructured text.', descriptionApprentice: 'You will need to work with real-world data that may contain errors, gaps, or inconsistencies — and know how to identify, fix, or escalate these issues. You\'ll also work across different data formats such as structured tables, spreadsheets, and unstructured text.', example: 'e.g. removing duplicate customer records, identifying a report with missing values and flagging it to a manager, working with both a database and a CSV export.' },
+  { id: 'analysis-statistics',   short: 'Analysis & Stats',   title: 'Analysis & Statistical Methods',           skills: ['S10','S13'],      description: 'The apprentice will need to apply analytical techniques to real data — from calculating trends and averages through to more advanced methods such as forecasting, pattern recognition, or time series analysis. Complexity can grow as the apprenticeship progresses.', descriptionApprentice: 'You will need to apply analytical techniques to real data — from calculating trends and averages through to more advanced methods such as forecasting, pattern recognition, or time series analysis. Complexity can grow as your apprenticeship progresses.', example: 'e.g. producing a monthly performance trend report, identifying a seasonal pattern in sales data, running a basic regression, forecasting next quarter\'s demand.' },
+  { id: 'predictive-analytics',  short: 'Predictive Analysis',title: 'Predictive & Forward-Looking Analysis',    skills: ['S11'],            description: 'The apprentice will need some exposure to using data to make predictions or support future planning. This doesn\'t require complex machine learning — it could be forecasting models in Excel, trend lines in a BI tool, or scenario planning with data.', descriptionApprentice: 'You will need some exposure to using data to make predictions or support future planning. This doesn\'t require complex machine learning — it could be forecasting models in Excel, trend lines in a BI tool, or scenario planning with data.', example: 'e.g. building a revenue forecast, modelling the impact of a pricing change, predicting stock levels based on historical demand.' },
+  { id: 'data-governance',       short: 'Data Governance',    title: 'Data Architecture & Governance',           skills: ['S9'],             description: 'The apprentice will need to understand how your organisation structures and governs its data — including where data is stored, who is responsible for it, and how it moves across systems. They don\'t need to design the architecture, but should work within it day-to-day.', descriptionApprentice: 'You will need to understand how your organisation structures and governs its data — including where data is stored, who is responsible for it, and how it moves across systems. You don\'t need to design the architecture, but should work within it day-to-day.', example: 'e.g. knowing which system is the source of truth for customer data, understanding the difference between a data warehouse and operational databases, following a data governance or retention policy.' },
+  { id: 'reporting-visualisation',short: 'Reporting & Viz',   title: 'Reporting & Data Visualisation',           skills: ['S14'],            description: 'The apprentice will need to regularly turn data into visual outputs that communicate findings clearly to others — such as dashboards, charts, graphs, or written reports. This is a core part of the role and a significant element of the End Point Assessment.', descriptionApprentice: 'You will need to regularly turn data into visual outputs that communicate findings clearly to others — such as dashboards, charts, graphs, or written reports. This is a core part of the role and a significant element of your End Point Assessment.', example: 'e.g. building and maintaining a Power BI or Tableau dashboard, producing a weekly performance report in Excel, creating charts for a management presentation.' },
+  { id: 'stakeholder-comms',     short: 'Stakeholder Comms',  title: 'Stakeholder Engagement & Communication',   skills: ['S5','S7','S12'],  description: 'The apprentice will need to work with colleagues or clients to understand what they need from data, and present findings back in a clear and appropriate way — adapting their communication style for both technical and non-technical audiences.', descriptionApprentice: 'You will need to work with colleagues or clients to understand what they need from data, and present findings back in a clear and appropriate way — adapting your communication style for both technical and non-technical audiences.', example: 'e.g. meeting with a department head to agree what metrics to track, presenting a data summary to a senior leadership team, writing a plain-English summary of analysis findings.' },
 ];
 
 const DA_SKILL_SHORT = { S1:'Secure data use & GDPR', S2:'Data analysis lifecycle', S3:'Data classification', S4:'Dataset analysis', S5:'UX & domain context', S6:'Quality risk management', S7:'Customer requirements analysis', S8:'Data sourcing & combination', S9:'Organisational data architecture', S10:'Statistical methods', S11:'Predictive analytics', S12:'Stakeholder communication', S13:'Analytical techniques (mining, forecasting)', S14:'Data visualisation & reporting', S15:'Tool selection & application' };
@@ -77,15 +82,15 @@ const DA_DEMO_STATE = {
 // ── Level 3 Data Technician ───────────────────────────────
 
 const DT_SKILL_GROUPS = [
-  { id: 'dt-security',    short: 'Data Security',    title: 'Data Security & Compliance',        skills: ['S12'],           description: 'The apprentice will need to store, manage and distribute data in compliance with your organisation\'s data security standards and applicable legislation such as GDPR. This includes understanding how data should be handled, shared and retained.', example: 'e.g. saving files in the correct secure location, following data retention policies, ensuring data is only shared with authorised recipients.' },
-  { id: 'dt-collection',  short: 'Data Collection',  title: 'Data Collection & Sourcing',         skills: ['S1','S2'],       description: 'The apprentice will need to source and migrate data from identified sources, then collect, format and save datasets in appropriate formats for further use.', example: 'e.g. downloading data from a company database or online portal, receiving exports from other departments, converting files into a consistent format.' },
-  { id: 'dt-preparation', short: 'Data Preparation', title: 'Data Preparation & Cleaning',        skills: ['S5','S16'],      description: 'The apprentice will need to manipulate, link and clean raw data — removing duplicates, correcting errors, parsing fields to a standard format, and testing data integrity before use.', example: 'e.g. removing duplicate rows from a spreadsheet, standardising phone number formats, checking all required fields are populated, testing a dataset\'s reliability before analysis.' },
-  { id: 'dt-blending',    short: 'Data Blending',    title: 'Data Blending & Integration',        skills: ['S4'],            description: 'The apprentice will need to blend datasets from multiple different sources and present them in a format appropriate for the task in hand.', example: 'e.g. combining CRM data with finance system data, merging survey results with customer records, producing a single dataset from several departmental reports.' },
-  { id: 'dt-quality',     short: 'Data Quality',     title: 'Data Quality & Auditing',            skills: ['S8','S9'],       description: 'The apprentice will need to apply cross-checking techniques to identify faults or errors in data, and audit data results to confirm accuracy and reliability.', example: 'e.g. reconciling figures between two reports to spot discrepancies, running validation checks on a new dataset, auditing a data extract against the source system.' },
-  { id: 'dt-analysis',    short: 'Analysis & Stats', title: 'Analysis & Trend Identification',    skills: ['S6','S7'],       description: 'The apprentice will need to use tools and basic statistical methods to identify trends and patterns in data, supporting informed decision-making.', example: 'e.g. using Excel charts or a BI tool to spot a sales trend, applying a simple average or percentage to highlight performance, using a basic algorithm to flag unusual values.' },
-  { id: 'dt-comms',       short: 'Communication',    title: 'Communication & Reporting',          skills: ['S3','S10','S11','S13'], description: 'The apprentice will need to summarise and explain data findings to different audiences — including non-technical stakeholders — producing clear documentation and communicating in a way that aids understanding.', example: 'e.g. writing a short data summary for a manager, producing a report using a standard template, presenting findings verbally to a team, adapting the technical level for different recipients.' },
-  { id: 'dt-teamwork',    short: 'Team & Projects',  title: 'Team Working & Project Support',     skills: ['S17','S18'],     description: 'The apprentice will need to work as part of a team — often across different functions — and manage their own workload effectively, prioritising tasks within the context of a wider project.', example: 'e.g. contributing to a project team alongside IT and operations colleagues, managing multiple data tasks to agreed deadlines, attending project meetings and reporting progress.' },
-  { id: 'dt-cpd',         short: 'CPD Support',      title: 'Professional Development Support',   skills: ['S14','S15'],     description: 'The apprentice will need your support to review their own development and keep up to date with new technologies and trends in data. This means providing access to relevant resources, time for learning, and encouragement to explore new tools.', example: 'e.g. time to attend webinars or online learning, access to industry publications, support to attend professional events or complete relevant certifications.' },
+  { id: 'dt-security',    short: 'Data Security',    title: 'Data Security & Compliance',        skills: ['S12'],           description: 'The apprentice will need to store, manage and distribute data in compliance with your organisation\'s data security standards and applicable legislation such as GDPR. This includes understanding how data should be handled, shared and retained.', descriptionApprentice: 'You will need to store, manage and distribute data in compliance with your organisation\'s data security standards and applicable legislation such as GDPR. This includes understanding how data should be handled, shared and retained.', example: 'e.g. saving files in the correct secure location, following data retention policies, ensuring data is only shared with authorised recipients.' },
+  { id: 'dt-collection',  short: 'Data Collection',  title: 'Data Collection & Sourcing',         skills: ['S1','S2'],       description: 'The apprentice will need to source and migrate data from identified sources, then collect, format and save datasets in appropriate formats for further use.', descriptionApprentice: 'You will need to source and migrate data from identified sources, then collect, format and save datasets in appropriate formats for further use.', example: 'e.g. downloading data from a company database or online portal, receiving exports from other departments, converting files into a consistent format.' },
+  { id: 'dt-preparation', short: 'Data Preparation', title: 'Data Preparation & Cleaning',        skills: ['S5','S16'],      description: 'The apprentice will need to manipulate, link and clean raw data — removing duplicates, correcting errors, parsing fields to a standard format, and testing data integrity before use.', descriptionApprentice: 'You will need to manipulate, link and clean raw data — removing duplicates, correcting errors, parsing fields to a standard format, and testing data integrity before use.', example: 'e.g. removing duplicate rows from a spreadsheet, standardising phone number formats, checking all required fields are populated, testing a dataset\'s reliability before analysis.' },
+  { id: 'dt-blending',    short: 'Data Blending',    title: 'Data Blending & Integration',        skills: ['S4'],            description: 'The apprentice will need to blend datasets from multiple different sources and present them in a format appropriate for the task in hand.', descriptionApprentice: 'You will need to blend datasets from multiple different sources and present them in a format appropriate for the task in hand.', example: 'e.g. combining CRM data with finance system data, merging survey results with customer records, producing a single dataset from several departmental reports.' },
+  { id: 'dt-quality',     short: 'Data Quality',     title: 'Data Quality & Auditing',            skills: ['S8','S9'],       description: 'The apprentice will need to apply cross-checking techniques to identify faults or errors in data, and audit data results to confirm accuracy and reliability.', descriptionApprentice: 'You will need to apply cross-checking techniques to identify faults or errors in data, and audit data results to confirm accuracy and reliability.', example: 'e.g. reconciling figures between two reports to spot discrepancies, running validation checks on a new dataset, auditing a data extract against the source system.' },
+  { id: 'dt-analysis',    short: 'Analysis & Stats', title: 'Analysis & Trend Identification',    skills: ['S6','S7'],       description: 'The apprentice will need to use tools and basic statistical methods to identify trends and patterns in data, supporting informed decision-making.', descriptionApprentice: 'You will need to use tools and basic statistical methods to identify trends and patterns in data, supporting informed decision-making.', example: 'e.g. using Excel charts or a BI tool to spot a sales trend, applying a simple average or percentage to highlight performance, using a basic algorithm to flag unusual values.' },
+  { id: 'dt-comms',       short: 'Communication',    title: 'Communication & Reporting',          skills: ['S3','S10','S11','S13'], description: 'The apprentice will need to summarise and explain data findings to different audiences — including non-technical stakeholders — producing clear documentation and communicating in a way that aids understanding.', descriptionApprentice: 'You will need to summarise and explain data findings to different audiences — including non-technical stakeholders — producing clear documentation and communicating in a way that aids understanding.', example: 'e.g. writing a short data summary for a manager, producing a report using a standard template, presenting findings verbally to a team, adapting the technical level for different recipients.' },
+  { id: 'dt-teamwork',    short: 'Team & Projects',  title: 'Team Working & Project Support',     skills: ['S17','S18'],     description: 'The apprentice will need to work as part of a team — often across different functions — and manage their own workload effectively, prioritising tasks within the context of a wider project.', descriptionApprentice: 'You will need to work as part of a team — often across different functions — and manage your own workload effectively, prioritising tasks within the context of a wider project.', example: 'e.g. contributing to a project team alongside IT and operations colleagues, managing multiple data tasks to agreed deadlines, attending project meetings and reporting progress.' },
+  { id: 'dt-cpd',         short: 'CPD Support',      title: 'Professional Development Support',   skills: ['S14','S15'],     description: 'The apprentice will need your support to review their own development and keep up to date with new technologies and trends in data. This means providing access to relevant resources, time for learning, and encouragement to explore new tools.', descriptionApprentice: 'You will need to take time to review your own development and keep up to date with new technologies and trends in data. This means making use of relevant resources, dedicating time for learning, and exploring new tools with encouragement from your employer.', example: 'e.g. time to attend webinars or online learning, access to industry publications, support to attend professional events or complete relevant certifications.' },
 ];
 
 const DT_SKILL_SHORT = { S1:'Data sourcing & migration', S2:'Data collection & formatting', S3:'Data summarisation', S4:'Data blending & presentation', S5:'Data manipulation & linking', S6:'Trend & pattern identification', S7:'Statistical methods', S8:'Cross-checking & fault identification', S9:'Data auditing', S10:'Communicating data findings', S11:'Technical documentation', S12:'Data security & distribution', S13:'Explaining data to audiences', S14:'Own development review', S15:'Technology awareness', S16:'Data cleaning & integrity testing', S17:'Multi-functional team working', S18:'Project prioritisation' };
@@ -117,6 +122,47 @@ const DT_DEMO_STATE = {
   tools: ['excel','sql','powerbi','sharepoint'], tools_other: '',
   tools_access: 'SQL database access is provided on day one. Power BI access requires a licence request through IT (up to five working days).',
   additional_info: 'Jordan will join the weekly data team meeting and contribute to at least one internal reporting project per quarter.',
+};
+
+// ── Level 4 AI & Automation Practitioner ──────────────────
+
+const AI_SKILL_GROUPS = [
+  { id: 'ai-strategic-ethical',    short: 'Ethical AI Adoption',   title: 'Strategic & Ethical AI Adoption',           skills: ['S2','S5','S13','S20','S23','S24'], description: 'The apprentice will need to support the responsible adoption of AI and automation — identifying opportunities to introduce it, working within ethical and safe working practices, and helping to manage the impact of change on colleagues. This includes contributing to clear, balanced communication about both the opportunities and risks of automation.', descriptionApprentice: 'You will need to support the responsible adoption of AI and automation — identifying opportunities to introduce it, working within ethical and safe working practices, and helping to manage the impact of change on colleagues. This includes contributing to clear, balanced communication about both the opportunities and risks of automation.', example: 'e.g. flagging a process suitable for automation and discussing the ethical implications with a manager, supporting colleagues through a new AI tool rollout, helping draft a briefing that sets out the benefits and risks of a proposed change.' },
+  { id: 'ai-solution-design',      short: 'Solution Design',       title: 'AI & Automation Solution Design',           skills: ['S7','S8','S10','S11','S26','S27'], description: 'The apprentice will need to configure and build AI or automation solutions using low-code/no-code platforms and AI tools — including writing and refining prompts, integrating systems via APIs or connectors, and applying ethical, human-centred design principles so solutions align with both business needs and technical capabilities.', descriptionApprentice: 'You will need to configure and build AI or automation solutions using low-code/no-code platforms and AI tools — including writing and refining prompts, integrating systems via APIs or connectors, and applying ethical, human-centred design principles so your solutions align with both business needs and technical capabilities.', example: 'e.g. building a workflow automation in a tool like Power Automate or Zapier, writing and testing prompts for a chatbot or AI assistant, connecting two systems via an API so data flows automatically between them.' },
+  { id: 'ai-testing-iteration',    short: 'Testing & Iteration',   title: 'Testing, Evaluation & Iteration',           skills: ['S3','S12','S21'],                  description: 'The apprentice will need to test whether an automation idea is viable, analyse and prepare data to support it, and iterate solutions based on testing and feedback — checking for reliability, security, accessibility, and fit with organisational needs before a solution is rolled out.', descriptionApprentice: 'You will need to test whether an automation idea is viable, analyse and prepare data to support it, and iterate your solutions based on testing and feedback — checking for reliability, security, accessibility, and fit with organisational needs before a solution is rolled out.', example: 'e.g. running a pilot of a new automation before wider rollout, reviewing user feedback and adjusting a chatbot\'s responses, checking a dataset is clean and fit for purpose before it feeds an automated process.' },
+  { id: 'ai-governance-risk',      short: 'Governance & Risk',     title: 'Governance, Assurance & Risk Management',   skills: ['S28','S29'],                       description: 'The apprentice will need to carry out assurance activities that evidence responsible use of AI and automation — documenting design and decision-making, contributing to risk assessments, and applying techniques such as algorithmic impact assessment or workforce equality monitoring to check solutions are fair and compliant.', descriptionApprentice: 'You will need to carry out assurance activities that evidence responsible use of AI and automation — documenting your design and decision-making, contributing to risk assessments, and applying techniques such as algorithmic impact assessment or workforce equality monitoring to check solutions are fair and compliant.', example: 'e.g. keeping a decision log for why an automation was designed a certain way, contributing to a risk assessment before a new AI tool goes live, checking whether an automated process could disadvantage any group of staff or customers.' },
+  { id: 'ai-stakeholder-enablement',short: 'Stakeholder & Training',title: 'Stakeholder Engagement & Workforce Enablement', skills: ['S4','S18','S19','S22'],          description: 'The apprentice will need to engage with non-technical colleagues to understand their needs and concerns, support the delivery of training on new tools, help create or adapt guidance materials, and communicate technical concepts in a way that\'s accessible to different audiences.', descriptionApprentice: 'You will need to engage with non-technical colleagues to understand their needs and concerns, support the delivery of training on new tools, help create or adapt guidance materials, and communicate technical concepts in a way that\'s accessible to different audiences.', example: 'e.g. running a short demo of a new tool for a non-technical team, updating a user guide after a process changes, explaining how an automation works to a colleague without a technical background.' },
+  { id: 'ai-continuous-improvement',short: 'Continuous Improvement',title: 'Continuous Improvement & Change Delivery',  skills: ['S1','S6','S9','S14','S15','S16','S17','S25'], description: 'The apprentice will need to review policies and procedures relevant to data and information security, map workflows to identify inefficiencies, apply analytical techniques to design and optimise solutions, and report on the productivity and efficiency gains automation delivers — while keeping up to date with new tools and sector trends.', descriptionApprentice: 'You will need to review policies and procedures relevant to data and information security, map workflows to identify inefficiencies, apply analytical techniques to design and optimise solutions, and report on the productivity and efficiency gains your automation work delivers — while keeping up to date with new tools and sector trends.', example: 'e.g. mapping out a manual process to find where automation could help, reporting back on the time saved by a new automation, researching a new AI tool that\'s relevant to the team\'s work.' },
+];
+
+const AI_SKILL_SHORT = { S1:'Data security policy compliance', S2:'Ethical & safe working practices', S3:'Automation viability analysis', S4:'Non-technical staff engagement', S5:'Change support & dialogue', S6:'Workflow & process mapping', S7:'Automation tool configuration', S8:'AI prompt creation & refinement', S9:'Analytical & computational techniques', S10:'AI/automation data integration', S11:'Digital workflow design & testing', S12:'Solution iteration from feedback', S13:'Automation opportunity identification', S14:'Productivity opportunity evaluation', S15:'Evidence-based governance suggestions', S16:'Productivity & efficiency reporting', S17:'Sustainable solution contribution', S18:'Training delivery support', S19:'Resource creation & adaptation', S20:'Collaborative AI strategy deployment', S21:'Automation data analysis & prep', S22:'Technical communication for stakeholders', S23:'Collaborative outcome delivery', S24:'Project management communications', S25:'Technology & trend awareness', S26:'Ethical & human-centred design', S27:'Business-technical alignment', S28:'AI assurance activities', S29:'Algorithmic impact & equality monitoring' };
+const AI_SKILL_FULL  = { S1:'Review, establish, follow and or amend policies and procedures on data and information security.', S2:'Follow ethical, responsible and safe working practices respecting confidentiality and sensitive organisational matters.', S3:'Undertake analysis to identify if automation is viable. Including assessing risks such as data quality, process maturity and unintended consequences of AI automation projects, such as the impact on job roles.', S4:'Engage with non-technical staff to understand their roles, responsibilities, and concerns when automation solutions are proposed and implemented. Adapt approach to support workforce needs when implementing solutions that impacts the workforce.', S5:'Support with the introduction, adaption, and implementation of change. Contribute to constructive dialogue between leaders and employees about the adoption of AI and automation solutions.', S6:'Review and complete workflow and process mapping to identify problems or inefficiencies and recommend solutions including pilots, incremental changes and scaling opportunities.', S7:'Use automation design tools to suit the organisational context to configure, adapt and implement AI or automation solutions, such as conversational agents, text processing AI, workflow automation platforms and cloud-based SaaS or PaaS.', S8:'Create and refine prompts for AI tools, using iterative testing to achieve accurate and useful outputs.', S9:'Apply analytical and computational techniques using tools and datasets to design, evaluate, and optimise automation solutions.', S10:'Integrate AI and automation technologies to collect, process, and manage data effectively, enabling intelligent and efficient system operation.', S11:'Design, integrate, and test digital workflows and AI automation tools using APIs, connectors, or low-or no-code integration methods.', S12:'Iterate solutions based on testing and feedback to ensure reliability, security, accessibility, and alignment with organisational needs.', S13:'Identify opportunities to deliver automation. Support leaders in integrating ethical, empathetic approaches when decision-making.', S14:'Support in the identification and evaluation of opportunities for increased productivity. For example, use of low-or no-code tools, streamlining processes and use of AI platforms.', S15:'Make evidence based suggestions to support governance, outcomes and facilitate improvement for example cost benefit analysis.', S16:'Report on productivity and efficiency savings and the opportunities for automation and where applicable when automation does not improve experience or processes.', S17:'Contribute to sustainable and efficient AI and automation solutions.', S18:'Support with the delivery of training to technical and non-technical user groups or audiences adapting content and format responding to feedback and organisational context.', S19:'Contribute to the creation and or adaption of resources such as user guides, training materials, process documents to meet user requirements.', S20:'Work collaboratively to deploy AI and automation strategies. Support where required to deal with the impact of automation for example retraining, redeployment, or upskilling of affected staff.', S21:'Undertake data analysis, preparation, and conversion to support automation solutions.', S22:'Present and communicate information including the translation of technical concepts into accessible materials to support clear dialogue with stakeholders.', S23:'Work with others to achieve agreed outcomes or outputs. Provide evidence-based analysis and insight to leaders on the likely human impacts of automation projects.', S24:'Use project management principles, techniques and tools to support the development of clear, balanced communications and briefings, articulating both opportunities and risks.', S25:'Keep up to date with existing, evolving, emerging technologies and sector trends in AI, automation and technology including methods to evaluate vendor and supplier solutions.', S26:'Apply ethical and human-centred design principles when scoping, developing, and deploying automation and AI solutions, underpinned by robust governance.', S27:'Apply technical understanding to help align business needs with technical capabilities, supporting the development of solutions that are scalable, efficient, and aligned with the organisation\'s strategic objectives.', S28:'Undertake assurance activities to evidence responsible AI and automation, including maintaining clear documentation of design and decision-making, contributing to risk assessments, and applying assurance frameworks to support compliance with organisational, regulatory, and ethical standards.', S29:'Apply algorithmic impact assessment and workforce equality monitoring techniques when scoping, implementing, and reviewing AI and automation projects. Gather and analyse relevant workforce data, identify potential equality risks, and contribute evidence-based recommendations to support fair and inclusive adoption.' };
+
+const AI_TOOLS = [
+  { id: 'power-automate', label: 'Power Automate' },   { id: 'zapier',    label: 'Zapier' },
+  { id: 'make',           label: 'Make (Integromat)' },{ id: 'uipath',    label: 'UiPath / RPA tool' },
+  { id: 'chatgpt',        label: 'ChatGPT' },           { id: 'copilot',   label: 'Microsoft Copilot' },
+  { id: 'claude',         label: 'Claude' },             { id: 'power-apps',label: 'Power Apps' },
+  { id: 'power-bi',       label: 'Power BI' },           { id: 'excel',     label: 'Microsoft Excel' },
+  { id: 'sharepoint',     label: 'SharePoint' },         { id: 'sql',       label: 'SQL' },
+  { id: 'python',         label: 'Python' },             { id: 'salesforce',label: 'Salesforce / CRM' },
+  { id: 'jira',           label: 'Jira / Trello / Asana' },{ id: 'teams',   label: 'Microsoft Teams / Slack' },
+  { id: 'postman',        label: 'Postman / API tools' },
+];
+
+const AI_DEMO_STATE = {
+  meta: { employer: 'Thornfield Insurance Services', apprentice: 'Casey Morgan', completer: 'Priya Shah', job_title: 'Head of Business Improvement', date: '2026-05-29', role: 'employer' },
+  sections: {
+    'ai-strategic-ethical':     { exposure: 'significant', frequency: 'daily',     comment: '' },
+    'ai-solution-design':       { exposure: 'significant', frequency: 'often',     comment: '' },
+    'ai-testing-iteration':     { exposure: 'moderate',    frequency: 'sometimes', comment: 'Testing is currently done informally by the lead automation analyst. Casey will shadow this process from month two and take ownership of testing their own automations from month four, with sign-off from a senior colleague.' },
+    'ai-governance-risk':       { exposure: 'limited',     frequency: 'rarely',    comment: 'Formal governance and risk assessment is led by our compliance team. Casey will be introduced to our AI governance framework and will contribute to risk assessments for any automation they build, with support from the compliance lead.' },
+    'ai-stakeholder-enablement':{ exposure: 'significant', frequency: 'often',     comment: '' },
+    'ai-continuous-improvement':{ exposure: 'moderate',    frequency: 'often',     comment: 'Process mapping and reporting on efficiency savings happens regularly, though Casey will initially support a senior analyst on this before leading it independently, expected from around month six.' },
+  },
+  tools: ['power-automate', 'chatgpt', 'power-bi', 'excel', 'sharepoint', 'teams'], tools_other: '',
+  tools_access: 'Power Automate and Power BI licences are granted on day one. Access to production systems for live automations requires sign-off from IT and the compliance team (up to five working days).',
+  additional_info: 'Casey will join the weekly digital transformation stand-up and will be paired with a senior automation analyst as a mentor for the first six months. A CRM migration project in Q3 will provide additional exposure to system integration work.',
 };
 
 // ── Level 3 Multi-channel Marketer ────────────────────────
@@ -206,6 +252,13 @@ const CS_DEMO_STATE = {
 // ── Checklist config map ──────────────────────────────────
 
 const CHECKLISTS = {
+  'l4-applied-ai': {
+    stateKey: 'jrsc_l4-applied-ai',
+    skillGroups: AI_SKILL_GROUPS, tools: AI_TOOLS,
+    skillShort: AI_SKILL_SHORT,   skillFull: AI_SKILL_FULL,
+    demoState: AI_DEMO_STATE,
+    jobTitleHint: 'e.g. Digital Operations Manager, Business Improvement Lead, Head of Digital Transformation',
+  },
   'l4-data-analyst': {
     stateKey: 'jrsc_l4-data-analyst',
     skillGroups: DA_SKILL_GROUPS, tools: DA_TOOLS,
@@ -251,6 +304,11 @@ const FREQUENCY_OPTIONS = [
   { value: 'daily',     label: 'Daily',     color: 'green' },
 ];
 
+const ROLE_OPTIONS = [
+  { value: 'employer',   label: 'Employer' },
+  { value: 'apprentice', label: 'Apprentice' },
+];
+
 // ── State ─────────────────────────────────────────────────
 
 function todayISO() {
@@ -259,7 +317,7 @@ function todayISO() {
 }
 
 function defaultState() {
-  return { meta: { employer:'', apprentice:'', completer:'', job_title:'', date: todayISO() }, sections:{}, tools:[], tools_other:'', tools_access:'', additional_info:'' };
+  return { meta: { employer:'', apprentice:'', completer:'', job_title:'', date: todayISO(), role: 'employer' }, sections:{}, tools:[], tools_other:'', tools_access:'', additional_info:'' };
 }
 
 function loadStateFor(key) {
@@ -310,7 +368,7 @@ let activeConfig = null;
 
 // ── Nav ───────────────────────────────────────────────────
 
-let activeCategory = Object.keys(STANDARDS)[0];
+let activeCategory = NAV_CATEGORIES[0];
 let activeId       = STANDARDS[activeCategory][0].id;
 
 function buildNav() { renderCategoryRow(); renderStandardRow(); }
@@ -318,7 +376,7 @@ function buildNav() { renderCategoryRow(); renderStandardRow(); }
 function renderCategoryRow() {
   const row = document.getElementById('nav-categories');
   row.innerHTML = '';
-  Object.keys(STANDARDS).forEach(group => {
+  NAV_CATEGORIES.forEach(group => {
     const btn = document.createElement('button');
     btn.className = 'nav-tab' + (group === activeCategory ? ' active' : '');
     btn.textContent = group;
@@ -381,14 +439,40 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
   const done  = completedCount(state, config.skillGroups);
   const total = config.skillGroups.length;
   const meta  = state.meta || {};
+  const role  = meta.role === 'apprentice' ? 'apprentice' : 'employer';
 
   const levelBadge = title.match(/^Level\s+\d+/)?.[0] || 'Standard';
+
+  const introText = role === 'apprentice'
+    ? 'Work through each section below to reflect on whether your role provides sufficient exposure across the required skill areas. Your responses will help determine whether the apprenticeship is recommended to proceed.'
+    : 'Work through each section below to assess whether the apprentice\'s role provides sufficient exposure across the required skill areas. Your responses will determine whether the apprenticeship is recommended to proceed.';
+
+  const frequencyGuideHeading = role === 'apprentice' ? 'How often will you encounter this?' : 'How often will the apprentice encounter this?';
+  const moderateGuideText = role === 'apprentice'
+    ? 'The role provides meaningful but not core exposure. You will encounter this regularly enough to develop with guidance.'
+    : 'The role provides meaningful but not core exposure. The apprentice will encounter this regularly enough to develop with guidance.';
+  const significantGuideText = role === 'apprentice'
+    ? 'This is a core part of the role. You will have regular, substantive hands-on exposure that directly builds the required skills.'
+    : 'This is a core part of the role. The apprentice will have regular, substantive hands-on exposure that directly builds the required skills.';
+
+  const toolsIntroText = role === 'apprentice'
+    ? 'Select all the tools and platforms you will have access to in your role. This helps us tailor programme delivery to the technologies you use day-to-day.'
+    : 'Select all the tools and platforms the apprentice will have access to in their role. This helps us tailor programme delivery to the technologies they use day-to-day.';
+  const toolsAccessHint = role === 'apprentice'
+    ? 'Do you need to make a formal request to gain access to any of these systems? If so, please describe the process or any restrictions that may apply.'
+    : 'Does the apprentice need to make a formal request to gain access to any of these systems? If so, please describe the process or any restrictions that may apply.';
+  const additionalInfoText = role === 'apprentice'
+    ? 'Is there anything else you\'d like to share that may be relevant to this assessment? This could include information about team routines, your existing knowledge, working patterns, planned projects, or anything else that gives us a fuller picture of the role.'
+    : 'Is there anything else you\'d like to share that may be relevant to this assessment? This could include information about team routines, the apprentice\'s existing knowledge, working patterns, planned projects, or anything else that gives us a fuller picture of the role.';
+  const additionalInfoPlaceholder = role === 'apprentice'
+    ? 'e.g. You will join the team\'s weekly review every Monday...'
+    : 'e.g. The apprentice will join the team\'s weekly review every Monday...';
 
   app.innerHTML = `
     <div class="checklist-header">
       <span class="level-badge">${levelBadge}</span>
       <h2>${title}${smeta.version ? ` <span class="version-tag">(${smeta.version})</span>` : ''}</h2>
-      <p>Work through each section below to assess whether the apprentice's role provides sufficient exposure across the required skill areas. Your responses will determine whether the apprenticeship is recommended to proceed.</p>
+      <p>${introText}</p>
       ${smeta.url ? `<a href="${smeta.url}" target="_blank" rel="noopener" class="standard-link">View official standard on Skills England ↗</a>` : ''}
     </div>
 
@@ -400,6 +484,12 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
     <div class="meta-card">
       <div class="meta-card-header">Checklist Details</div>
       <div class="meta-grid">
+        <div class="meta-field role-field">
+          <label class="meta-label">Who is completing this checklist?</label>
+          <div class="rating-options" id="role-toggle">
+            ${ROLE_OPTIONS.map(o => `<button class="rating-btn role-btn${role === o.value ? ' selected' : ''}" data-value="${o.value}">${o.label}</button>`).join('')}
+          </div>
+        </div>
         <div class="meta-field"><label class="meta-label" for="meta-employer">Employer Name</label><input type="text" id="meta-employer" class="text-input" placeholder="e.g. Acme Ltd" value="${meta.employer || ''}" /></div>
         <div class="meta-field"><label class="meta-label" for="meta-apprentice">Apprentice Name <span class="optional">(optional)</span></label><input type="text" id="meta-apprentice" class="text-input" placeholder="Leave blank if not yet known" value="${meta.apprentice || ''}" /></div>
         <div class="meta-field"><label class="meta-label" for="meta-date">Date of Completion</label><input type="date" id="meta-date" class="text-input" value="${meta.date || todayISO()}" /></div>
@@ -419,12 +509,12 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
             <h4>Level of exposure</h4>
             <ul>
               <li class="guide-red"><strong>Limited</strong> — The role touches this occasionally or only in a narrow context. Significant support or additional project work will be needed to build the required competence.</li>
-              <li class="guide-amber"><strong>Moderate</strong> — The role provides meaningful but not core exposure. The apprentice will encounter this regularly enough to develop with guidance.</li>
-              <li class="guide-green"><strong>Significant</strong> — This is a core part of the role. The apprentice will have regular, substantive hands-on exposure that directly builds the required skills.</li>
+              <li class="guide-amber"><strong>Moderate</strong> — ${moderateGuideText}</li>
+              <li class="guide-green"><strong>Significant</strong> — ${significantGuideText}</li>
             </ul>
           </div>
           <div class="rating-guide-col">
-            <h4>How often will the apprentice encounter this?</h4>
+            <h4>${frequencyGuideHeading}</h4>
             <ul>
               <li class="guide-red"><strong>Rarely</strong> — Less than once a month; only on specific projects or occasional tasks.</li>
               <li class="guide-amber"><strong>Sometimes</strong> — A few times a month.</li>
@@ -450,7 +540,7 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
         <span class="section-toggle" id="tools-toggle">+</span>
       </div>
       <div class="section-card-body collapsed" id="tools-body">
-        <p class="tools-intro">Select all the tools and platforms the apprentice will have access to in their role. This helps us tailor programme delivery to the technologies they use day-to-day.</p>
+        <p class="tools-intro">${toolsIntroText}</p>
         <div class="tools-grid" id="tools-grid"></div>
         <div class="tools-other-wrap">
           <label class="field-label" for="tools-other">Any other tools or systems not listed above:</label>
@@ -458,7 +548,7 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
         </div>
         <div class="tools-other-wrap">
           <label class="field-label" for="tools-access">System access &amp; permissions</label>
-          <p class="field-hint">Does the apprentice need to make a formal request to gain access to any of these systems? If so, please describe the process or any restrictions that may apply.</p>
+          <p class="field-hint">${toolsAccessHint}</p>
           <textarea id="tools-access" class="comment-textarea" rows="3" placeholder="e.g. Database access requires IT approval. CRM access is granted on day one...">${state.tools_access || ''}</textarea>
         </div>
       </div>
@@ -469,8 +559,8 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
         <div class="section-header-left"><span class="section-num">${total+2}</span><h3>Additional Information</h3></div>
       </div>
       <div class="section-card-body">
-        <div class="section-description"><p>Is there anything else you'd like to share that may be relevant to this assessment? This could include information about team routines, the apprentice's existing knowledge, working patterns, planned projects, or anything else that gives us a fuller picture of the role.</p></div>
-        <div class="rating-area"><textarea id="additional-info" class="comment-textarea" rows="5" placeholder="e.g. The apprentice will join the team's weekly review every Monday...">${state.additional_info || ''}</textarea></div>
+        <div class="section-description"><p>${additionalInfoText}</p></div>
+        <div class="rating-area"><textarea id="additional-info" class="comment-textarea" rows="5" placeholder="${additionalInfoPlaceholder}">${state.additional_info || ''}</textarea></div>
       </div>
     </div>
 
@@ -503,6 +593,15 @@ function renderChecklist(app, standardId, title, config, overrideState = null, i
   document.getElementById('tools-access').addEventListener('input',  e => { state.tools_access    = e.target.value; saveStateFor(config.stateKey, state); });
   document.getElementById('additional-info').addEventListener('input',e => { state.additional_info = e.target.value; saveStateFor(config.stateKey, state); });
   document.getElementById('tools-other').addEventListener('input',   e => { state.tools_other     = e.target.value; saveStateFor(config.stateKey, state); });
+
+  document.querySelectorAll('#role-toggle .role-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!state.meta) state.meta = {};
+      state.meta.role = btn.dataset.value;
+      saveStateFor(config.stateKey, state);
+      renderChecklist(app, standardId, title, config, state, isDemo);
+    });
+  });
 
   if (!isDemo) buildSidebar(state, config);
 
@@ -572,6 +671,7 @@ function buildSectionCard(group, state, config, num) {
   const sec    = state.sections[group.id] || {};
   const status = getSectionStatus(sec);
   const isOpen = !(sec.exposure && sec.frequency);
+  const role   = state.meta?.role === 'apprentice' ? 'apprentice' : 'employer';
 
   const card = document.createElement('div');
   card.className = 'section-card' + (status !== 'incomplete' ? ' status-' + status : '');
@@ -580,6 +680,12 @@ function buildSectionCard(group, state, config, num) {
   const skillsLine = group.skills.map(s =>
     `<span class="skill-item" title="${config.skillFull[s] || ''}">${s}: ${config.skillShort[s] || s}</span>`
   ).join('');
+
+  const description = (role === 'apprentice' && group.descriptionApprentice) ? group.descriptionApprentice : group.description;
+  const frequencyLabel = role === 'apprentice' ? 'How often will you encounter this?' : 'How often will the apprentice encounter this?';
+  const commentPlaceholder = role === 'apprentice'
+    ? 'Describe how you will develop in this area, or any plans to increase your exposure during the programme...'
+    : 'Describe how the apprentice will develop in this area, or any plans to increase their exposure during the programme...';
 
   card.innerHTML = `
     <div class="section-card-header">
@@ -594,7 +700,7 @@ function buildSectionCard(group, state, config, num) {
     </div>
     <div class="section-card-body ${isOpen ? '' : 'collapsed'}">
       <div class="section-description">
-        <p>${group.description}</p>
+        <p>${description}</p>
         <p class="section-example">${group.example}</p>
       </div>
       <div class="rating-area">
@@ -605,7 +711,7 @@ function buildSectionCard(group, state, config, num) {
           </div>
         </div>
         <div class="rating-group">
-          <span class="rating-label">How often will the apprentice encounter this?</span>
+          <span class="rating-label">${frequencyLabel}</span>
           <div class="rating-options" id="frequency-${group.id}">
             ${FREQUENCY_OPTIONS.map(o => `<button class="rating-btn color-${o.color}${sec.frequency === o.value ? ' selected' : ''}" data-group="${group.id}" data-type="frequency" data-value="${o.value}">${o.label}</button>`).join('')}
           </div>
@@ -613,7 +719,7 @@ function buildSectionCard(group, state, config, num) {
       </div>
       <div class="comment-area${needsComment(sec) ? '' : ' hidden'}" id="comment-area-${group.id}">
         <label class="field-label" for="comment-${group.id}">Please explain how exposure in this area will be achieved or supported <span class="required-marker">— required</span></label>
-        <textarea id="comment-${group.id}" class="comment-textarea" rows="3" placeholder="Describe how the apprentice will develop in this area, or any plans to increase their exposure during the programme..." data-group="${group.id}">${sec.comment || ''}</textarea>
+        <textarea id="comment-${group.id}" class="comment-textarea" rows="3" placeholder="${commentPlaceholder}" data-group="${group.id}">${sec.comment || ''}</textarea>
       </div>
     </div>
   `;

@@ -786,10 +786,29 @@ body {
 
 .meta-field { display: flex; flex-direction: column; gap: 0.35rem; }
 
+.meta-field.role-field { grid-column: 1 / -1; }
+
 .meta-label {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text);
+}
+
+.role-btn {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.role-btn.selected {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.role-btn:hover:not(.selected) {
+  border-color: var(--navy2);
+  color: var(--text);
+  opacity: 1;
 }
 
 .optional {
